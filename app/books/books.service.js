@@ -4,25 +4,30 @@
 
     var app = angular.module('BitwiseBooks');
 
-    app.service('BooksService', function($http){
+    app.service('BooksService', function($http, Book){
 
-        var books = [];
+        var vm = this;
+        vm.books = [];
 
-       function bootstrap(data){
+       vm.makeBooks = function makeBooks(data){
            data.forEach(function(book){
-               books.push(book);
+               vm.books.push(new Book(book));
            });
-       }
+           return vm.books;
+       };
 
-        function find(id){
-            return _.find(books, {id: id});
+        vm.getBooks = function getBooks() {
+            return $http.get('../../books.json').then(function(res) {
+                return vm.makeBooks(res.data);
+            }, function(err){
+                return "Sorry, there was an error.";
+            });
+        };
+
+        vm.find = function find(book_id){
+            return _.find(vm.books, {_id: book_id});
         }
 
-        return {
-            find: find,
-            bootstrap: bootstrap,
-            books: books
-        }
     });
 
 }());

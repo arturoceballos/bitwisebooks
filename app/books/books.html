@@ -1,17 +1,15 @@
 <ui-view>
     <h1>Books</h1>
-    <div class="row" ng-repeat="book in books">
-        <div class="col-md-12 books">
-            <div class="col-md-6">
-                <img class="img-responsive" src="{{ book.picture }}" alt=""/>
-            </div>
-            <div class="col-md-6">
-                <a ui-sref="BitwiseBooks.books.single({ bookId: book.id })"><h2>{{book.title}}</h2></a>
-                <h3>{{book.author}}</h3>
-                <p>{{book.year}}</p>
-                <p>Price: {{book.cost}}</p>
-                <p>{{book.about}}</p>
-            </div>
+    <div class="row books" ng-repeat="book in books.books">
+        <div class="col-md-4">
+            <img class="img-responsive" src="{{ book.picture }}" alt=""/>
+        </div>
+        <div class="col-md-8">
+            <a ui-sref="BitwiseBooks.books.single({ bookId: book._id })"><h2>{{book.title}}</h2></a>
+            <h3>{{book.findAuthor()}}</h3>
+            <p>{{book.year}}</p>
+            <p>Price: {{book.cost}} - {{book.inStock()}}</p>
+            <p>{{book.about}}</p>
         </div>
     </div>
 </ui-view>

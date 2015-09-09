@@ -1,6 +1,11 @@
-<h1>{{book.title}}</h1>
-<h2>Author: {{book.author}}</h2>
-<p>Published: {{book.year}}</p>
-<p>Price: {{book.cost}}</p>
-<p>Summary: <br/>
-   {{book.about}}</p>
+<div class="col-md-4">
+   <img src="{{ book.book.picture}}" class="img-responsive" alt=""/>
+</div>
+
+<div class="col-md-8">
+   <h1>{{book.book.title}}</h1>
+   <h2>Author: {{book.book.author}}</h2>
+   <p>Published: {{book.book.year}}</p>
+   <p>Price: {{book.book.cost}}</p>
+   <p>Summary: {{book.book.about}}</p>
+</div>
